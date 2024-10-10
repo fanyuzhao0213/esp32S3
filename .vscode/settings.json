@@ -14,6 +14,7 @@
     "key.h": "c",
     "esp_timer.h": "c",
     "complex": "c",
-    "gptim.h": "c"
+    "gptim.h": "c",
+    "iic.h": "c"
 }
 }

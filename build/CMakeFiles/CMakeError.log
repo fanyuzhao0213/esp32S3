@@ -1,17 +1,17 @@
 Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
 Change Dir: G:/esp32S3/my_esp32_test/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):D:/espidf/tools/tools/ninja/1.10.2/ninja.exe cmTC_2db1a && [1/2] Building C object CMakeFiles/cmTC_2db1a.dir/src.c.obj
-[2/2] Linking C executable cmTC_2db1a
-FAILED: cmTC_2db1a 
-cmd.exe /C "cd . && D:\espidf\tools\tools\xtensa-esp32s3-elf\esp-2022r1-11.2.0\xtensa-esp32s3-elf\bin\xtensa-esp32s3-elf-gcc.exe -mlongcalls  CMakeFiles/cmTC_2db1a.dir/src.c.obj -o cmTC_2db1a   && cd ."
-d:/espidf/tools/tools/xtensa-esp32s3-elf/esp-2022r1-11.2.0/xtensa-esp32s3-elf/bin/../lib/gcc/xtensa-esp32s3-elf/11.2.0/../../../../xtensa-esp32s3-elf/bin/ld.exe: CMakeFiles/cmTC_2db1a.dir/src.c.obj:(.literal+0x4): undefined reference to `pthread_create'
-d:/espidf/tools/tools/xtensa-esp32s3-elf/esp-2022r1-11.2.0/xtensa-esp32s3-elf/bin/../lib/gcc/xtensa-esp32s3-elf/11.2.0/../../../../xtensa-esp32s3-elf/bin/ld.exe: CMakeFiles/cmTC_2db1a.dir/src.c.obj:(.literal+0x8): undefined reference to `pthread_detach'
-d:/espidf/tools/tools/xtensa-esp32s3-elf/esp-2022r1-11.2.0/xtensa-esp32s3-elf/bin/../lib/gcc/xtensa-esp32s3-elf/11.2.0/../../../../xtensa-esp32s3-elf/bin/ld.exe: CMakeFiles/cmTC_2db1a.dir/src.c.obj:(.literal+0xc): undefined reference to `pthread_cancel'
-d:/espidf/tools/tools/xtensa-esp32s3-elf/esp-2022r1-11.2.0/xtensa-esp32s3-elf/bin/../lib/gcc/xtensa-esp32s3-elf/11.2.0/../../../../xtensa-esp32s3-elf/bin/ld.exe: CMakeFiles/cmTC_2db1a.dir/src.c.obj:(.literal+0x10): undefined reference to `pthread_join'
-d:/espidf/tools/tools/xtensa-esp32s3-elf/esp-2022r1-11.2.0/xtensa-esp32s3-elf/bin/../lib/gcc/xtensa-esp32s3-elf/11.2.0/../../../../xtensa-esp32s3-elf/bin/ld.exe: CMakeFiles/cmTC_2db1a.dir/src.c.obj:(.literal+0x14): undefined reference to `pthread_atfork'
-d:/espidf/tools/tools/xtensa-esp32s3-elf/esp-2022r1-11.2.0/xtensa-esp32s3-elf/bin/../lib/gcc/xtensa-esp32s3-elf/11.2.0/../../../../xtensa-esp32s3-elf/bin/ld.exe: CMakeFiles/cmTC_2db1a.dir/src.c.obj:(.literal+0x18): undefined reference to `pthread_exit'
-d:/espidf/tools/tools/xtensa-esp32s3-elf/esp-2022r1-11.2.0/xtensa-esp32s3-elf/bin/../lib/gcc/xtensa-esp32s3-elf/11.2.0/../../../../xtensa-esp32s3-elf/bin/ld.exe: CMakeFiles/cmTC_2db1a.dir/src.c.obj: in function `main':
+Run Build Command(s):D:/espidf/tools/tools/ninja/1.10.2/ninja.exe cmTC_4b7cd && [1/2] Building C object CMakeFiles/cmTC_4b7cd.dir/src.c.obj
+[2/2] Linking C executable cmTC_4b7cd
+FAILED: cmTC_4b7cd 
+cmd.exe /C "cd . && D:\espidf\tools\tools\xtensa-esp32s3-elf\esp-2022r1-11.2.0\xtensa-esp32s3-elf\bin\xtensa-esp32s3-elf-gcc.exe -mlongcalls  CMakeFiles/cmTC_4b7cd.dir/src.c.obj -o cmTC_4b7cd   && cd ."
+d:/espidf/tools/tools/xtensa-esp32s3-elf/esp-2022r1-11.2.0/xtensa-esp32s3-elf/bin/../lib/gcc/xtensa-esp32s3-elf/11.2.0/../../../../xtensa-esp32s3-elf/bin/ld.exe: CMakeFiles/cmTC_4b7cd.dir/src.c.obj:(.literal+0x4): undefined reference to `pthread_create'
+d:/espidf/tools/tools/xtensa-esp32s3-elf/esp-2022r1-11.2.0/xtensa-esp32s3-elf/bin/../lib/gcc/xtensa-esp32s3-elf/11.2.0/../../../../xtensa-esp32s3-elf/bin/ld.exe: CMakeFiles/cmTC_4b7cd.dir/src.c.obj:(.literal+0x8): undefined reference to `pthread_detach'
+d:/espidf/tools/tools/xtensa-esp32s3-elf/esp-2022r1-11.2.0/xtensa-esp32s3-elf/bin/../lib/gcc/xtensa-esp32s3-elf/11.2.0/../../../../xtensa-esp32s3-elf/bin/ld.exe: CMakeFiles/cmTC_4b7cd.dir/src.c.obj:(.literal+0xc): undefined reference to `pthread_cancel'
+d:/espidf/tools/tools/xtensa-esp32s3-elf/esp-2022r1-11.2.0/xtensa-esp32s3-elf/bin/../lib/gcc/xtensa-esp32s3-elf/11.2.0/../../../../xtensa-esp32s3-elf/bin/ld.exe: CMakeFiles/cmTC_4b7cd.dir/src.c.obj:(.literal+0x10): undefined reference to `pthread_join'
+d:/espidf/tools/tools/xtensa-esp32s3-elf/esp-2022r1-11.2.0/xtensa-esp32s3-elf/bin/../lib/gcc/xtensa-esp32s3-elf/11.2.0/../../../../xtensa-esp32s3-elf/bin/ld.exe: CMakeFiles/cmTC_4b7cd.dir/src.c.obj:(.literal+0x14): undefined reference to `pthread_atfork'
+d:/espidf/tools/tools/xtensa-esp32s3-elf/esp-2022r1-11.2.0/xtensa-esp32s3-elf/bin/../lib/gcc/xtensa-esp32s3-elf/11.2.0/../../../../xtensa-esp32s3-elf/bin/ld.exe: CMakeFiles/cmTC_4b7cd.dir/src.c.obj:(.literal+0x18): undefined reference to `pthread_exit'
+d:/espidf/tools/tools/xtensa-esp32s3-elf/esp-2022r1-11.2.0/xtensa-esp32s3-elf/bin/../lib/gcc/xtensa-esp32s3-elf/11.2.0/../../../../xtensa-esp32s3-elf/bin/ld.exe: CMakeFiles/cmTC_4b7cd.dir/src.c.obj: in function `main':
 src.c:(.text+0x1c): undefined reference to `pthread_create'
 d:/espidf/tools/tools/xtensa-esp32s3-elf/esp-2022r1-11.2.0/xtensa-esp32s3-elf/bin/../lib/gcc/xtensa-esp32s3-elf/11.2.0/../../../../xtensa-esp32s3-elf/bin/ld.exe: src.c:(.text+0x26): undefined reference to `pthread_detach'
 d:/espidf/tools/tools/xtensa-esp32s3-elf/esp-2022r1-11.2.0/xtensa-esp32s3-elf/bin/../lib/gcc/xtensa-esp32s3-elf/11.2.0/../../../../xtensa-esp32s3-elf/bin/ld.exe: src.c:(.text+0x30): undefined reference to `pthread_cancel'
@@ -46,10 +46,10 @@ int main(void)
 Determining if the function pthread_create exists in the pthreads failed with the following output:
 Change Dir: G:/esp32S3/my_esp32_test/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):D:/espidf/tools/tools/ninja/1.10.2/ninja.exe cmTC_cab26 && [1/2] Building C object CMakeFiles/cmTC_cab26.dir/CheckFunctionExists.c.obj
-[2/2] Linking C executable cmTC_cab26
-FAILED: cmTC_cab26 
-cmd.exe /C "cd . && D:\espidf\tools\tools\xtensa-esp32s3-elf\esp-2022r1-11.2.0\xtensa-esp32s3-elf\bin\xtensa-esp32s3-elf-gcc.exe -mlongcalls  -DCHECK_FUNCTION_EXISTS=pthread_create  CMakeFiles/cmTC_cab26.dir/CheckFunctionExists.c.obj -o cmTC_cab26  -lpthreads && cd ."
+Run Build Command(s):D:/espidf/tools/tools/ninja/1.10.2/ninja.exe cmTC_87128 && [1/2] Building C object CMakeFiles/cmTC_87128.dir/CheckFunctionExists.c.obj
+[2/2] Linking C executable cmTC_87128
+FAILED: cmTC_87128 
+cmd.exe /C "cd . && D:\espidf\tools\tools\xtensa-esp32s3-elf\esp-2022r1-11.2.0\xtensa-esp32s3-elf\bin\xtensa-esp32s3-elf-gcc.exe -mlongcalls  -DCHECK_FUNCTION_EXISTS=pthread_create  CMakeFiles/cmTC_87128.dir/CheckFunctionExists.c.obj -o cmTC_87128  -lpthreads && cd ."
 d:/espidf/tools/tools/xtensa-esp32s3-elf/esp-2022r1-11.2.0/xtensa-esp32s3-elf/bin/../lib/gcc/xtensa-esp32s3-elf/11.2.0/../../../../xtensa-esp32s3-elf/bin/ld.exe: cannot find -lpthreads
 collect2.exe: error: ld returned 1 exit status
 ninja: build stopped: subcommand failed.
@@ -59,10 +59,10 @@ ninja: build stopped: subcommand failed.
 Determining if the function pthread_create exists in the pthread failed with the following output:
 Change Dir: G:/esp32S3/my_esp32_test/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):D:/espidf/tools/tools/ninja/1.10.2/ninja.exe cmTC_d5fe4 && [1/2] Building C object CMakeFiles/cmTC_d5fe4.dir/CheckFunctionExists.c.obj
-[2/2] Linking C executable cmTC_d5fe4
-FAILED: cmTC_d5fe4 
-cmd.exe /C "cd . && D:\espidf\tools\tools\xtensa-esp32s3-elf\esp-2022r1-11.2.0\xtensa-esp32s3-elf\bin\xtensa-esp32s3-elf-gcc.exe -mlongcalls  -DCHECK_FUNCTION_EXISTS=pthread_create  CMakeFiles/cmTC_d5fe4.dir/CheckFunctionExists.c.obj -o cmTC_d5fe4  -lpthread && cd ."
+Run Build Command(s):D:/espidf/tools/tools/ninja/1.10.2/ninja.exe cmTC_8d42e && [1/2] Building C object CMakeFiles/cmTC_8d42e.dir/CheckFunctionExists.c.obj
+[2/2] Linking C executable cmTC_8d42e
+FAILED: cmTC_8d42e 
+cmd.exe /C "cd . && D:\espidf\tools\tools\xtensa-esp32s3-elf\esp-2022r1-11.2.0\xtensa-esp32s3-elf\bin\xtensa-esp32s3-elf-gcc.exe -mlongcalls  -DCHECK_FUNCTION_EXISTS=pthread_create  CMakeFiles/cmTC_8d42e.dir/CheckFunctionExists.c.obj -o cmTC_8d42e  -lpthread && cd ."
 d:/espidf/tools/tools/xtensa-esp32s3-elf/esp-2022r1-11.2.0/xtensa-esp32s3-elf/bin/../lib/gcc/xtensa-esp32s3-elf/11.2.0/../../../../xtensa-esp32s3-elf/bin/ld.exe: cannot find -lpthread
 collect2.exe: error: ld returned 1 exit status
 ninja: build stopped: subcommand failed.
@@ -72,10 +72,10 @@ ninja: build stopped: subcommand failed.
 Determining if compiler accepts -pthread failed with the following output:
 Change Dir: G:/esp32S3/my_esp32_test/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):D:/espidf/tools/tools/ninja/1.10.2/ninja.exe cmTC_f5111 && [1/2] Building C object CMakeFiles/cmTC_f5111.dir/CheckForPthreads.c.obj
-[2/2] Linking C executable cmTC_f5111
-FAILED: cmTC_f5111 
-cmd.exe /C "cd . && D:\espidf\tools\tools\xtensa-esp32s3-elf\esp-2022r1-11.2.0\xtensa-esp32s3-elf\bin\xtensa-esp32s3-elf-gcc.exe -mlongcalls  CMakeFiles/cmTC_f5111.dir/CheckForPthreads.c.obj -o cmTC_f5111  -pthread && cd ."
+Run Build Command(s):D:/espidf/tools/tools/ninja/1.10.2/ninja.exe cmTC_653c8 && [1/2] Building C object CMakeFiles/cmTC_653c8.dir/CheckForPthreads.c.obj
+[2/2] Linking C executable cmTC_653c8
+FAILED: cmTC_653c8 
+cmd.exe /C "cd . && D:\espidf\tools\tools\xtensa-esp32s3-elf\esp-2022r1-11.2.0\xtensa-esp32s3-elf\bin\xtensa-esp32s3-elf-gcc.exe -mlongcalls  CMakeFiles/cmTC_653c8.dir/CheckForPthreads.c.obj -o cmTC_653c8  -pthread && cd ."
 xtensa-esp32s3-elf-gcc.exe: error: unrecognized command-line option '-pthread'
 ninja: build stopped: subcommand failed.
 

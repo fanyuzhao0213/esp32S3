@@ -19,7 +19,7 @@
  */
 
 #include "esptim.h"
-
+#include "pwm.h"
 
 /**
  * @brief       初始化高精度定时器（ESP_TIMER）
@@ -49,5 +49,6 @@ void esptim_int_init(uint64_t tps)
  */
 void esptim_callback(void *arg)
 {
+    // printf("esptim_callback,ledpwmval:%d\r\n",ledpwmval);
     LED2_TOGGLE();
 }

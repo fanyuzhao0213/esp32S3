@@ -1,7 +1,7 @@
 {
     "version":            "1",
     "project_name":       "my_esp32_test",
-    "project_version":    "1",
+    "project_version":    "6844f09-dirty",
     "project_path":       "G:/esp32S3/my_esp32_test",
     "idf_path":           "D:/espidf/v5.0.7/esp-idf",
     "build_dir":          "G:/esp32S3/my_esp32_test/build",
@@ -34,13 +34,13 @@
             "dir": "G:/esp32S3/my_esp32_test/components/BSP",
             "type": "LIBRARY",
             "lib": "__idf_BSP",
-            "reqs": [ "driver", "esp_timer" ],
+            "reqs": [ "driver", "esp_timer", "esp_lcd" ],
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
             "file": "G:/esp32S3/my_esp32_test/build/esp-idf/BSP/libBSP.a",
-            "sources": [ "G:/esp32S3/my_esp32_test/components/BSP/LED/led.c", "G:/esp32S3/my_esp32_test/components/BSP/KEY/key.c", "G:/esp32S3/my_esp32_test/components/BSP/ESPTIM/esptim.c", "G:/esp32S3/my_esp32_test/components/BSP/GPTIM/gptim.c", "G:/esp32S3/my_esp32_test/components/BSP/WDT/wdt.c" ],
-            "include_dirs": [ "LED", "KEY", "ESPTIM", "GPTIM", "WDT" ]
+            "sources": [ "G:/esp32S3/my_esp32_test/components/BSP/LED/led.c", "G:/esp32S3/my_esp32_test/components/BSP/KEY/key.c", "G:/esp32S3/my_esp32_test/components/BSP/ESPTIM/esptim.c", "G:/esp32S3/my_esp32_test/components/BSP/GPTIM/gptim.c", "G:/esp32S3/my_esp32_test/components/BSP/WDT/wdt.c", "G:/esp32S3/my_esp32_test/components/BSP/PWM/pwm.c", "G:/esp32S3/my_esp32_test/components/BSP/IIC/iic.c" ],
+            "include_dirs": [ "LED", "KEY", "ESPTIM", "GPTIM", "WDT", "PWM", "IIC" ]
         },
         "app_trace": {
             "alias": "idf::app_trace",
