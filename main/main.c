@@ -23,6 +23,7 @@
 #include "wdt.h"
 #include "pwm.h"
 #include "iic.h"
+#include "simple_wifi_sta.h"
 
 uint8_t dir = 1;
 uint16_t ledpwmval = 0;
@@ -106,6 +107,9 @@ void app_main(void)
     // wdt_init(5000, 2000000);                                        /* 初始化看门狗相关的定时器 */
 
     pwm_init(10,1000);
+
+
+    wifi_sta_init();                        //wifi STA工作模式初始化
     while (1)
     {
         // watch_dog_feed();

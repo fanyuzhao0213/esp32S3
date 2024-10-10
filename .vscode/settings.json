@@ -15,6 +15,7 @@
     "esp_timer.h": "c",
     "complex": "c",
     "gptim.h": "c",
-    "iic.h": "c"
+    "iic.h": "c",
+    "simple_wifi_sta.h": "c"
 }
 }
