@@ -12,6 +12,7 @@
 #include "esp_smartconfig.h"
 #include "esp_log.h"
 #include "wifi_smartconfig.h"
+#include "weather.h"
 
 
 /* 定义事件 */
@@ -57,6 +58,9 @@ static void event_handler(void* arg, esp_event_base_t event_base,
         ESP_LOGI(TAG, "got ip:%s", esp_ip4addr_ntoa(&event->ip_info.ip, ip_str, sizeof(ip_str))); // 打印 IP 地址
         ESP_LOGI(TAG, "netmask:%s", esp_ip4addr_ntoa(&event->ip_info.netmask, netmask_str, sizeof(netmask_str))); // 打印子网掩码
         ESP_LOGI(TAG, "gateway:%s", esp_ip4addr_ntoa(&event->ip_info.gw, gateway_str, sizeof(gateway_str))); // 打印网关地址
+
+        //start http  task
+		xTaskCreate(http_client_task, "http_client", 5120, NULL, 3, NULL);
     }
     else if (event_base == SC_EVENT && event_id == SC_EVENT_SCAN_DONE)
     {
