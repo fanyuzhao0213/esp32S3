@@ -27,6 +27,13 @@
     "esp_event.h": "c",
     "esp_http_client.h": "c",
     "cjson.h": "c",
-    "weather.h": "c"
+    "weather.h": "c",
+    "esp_smartconfig.h": "c",
+    "wifi_smartconfig.h": "c",
+    "event_groups.h": "c",
+    "bitset": "c",
+    "chrono": "c",
+    "algorithm": "c",
+    "time.h": "c"
 }
 }

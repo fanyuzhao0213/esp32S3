@@ -15,6 +15,7 @@
 #include "esp_http_client.h"
 #include "cJSON.h"
 #include "weather.h"
+#include "wifi_smartconfig.h"
 
 static const char *HTTP_TAG = "Weather";
 #define MAX_HTTP_OUTPUT_BUFFER 1300
@@ -84,39 +85,74 @@ void parse_weather_data(const char *json_data)
 /** HTTP functions **/
 void http_client_task(void *pvParameters)
 {
-	char output_buffer[MAX_HTTP_OUTPUT_BUFFER] = {0};   // Buffer to store response of http request
-    int content_length = 0;
-	static const char *URL = "http://"HOST"/v3/weather/daily.json?"	\
-							 "key="UserKey"&location="Location		\
-							 "&language="Language					\
-							 "&unit=c&start="Strat"&days="Days;
-    esp_http_client_config_t config = {
-        .url = URL,
-    };
-    esp_http_client_handle_t client = esp_http_client_init(&config);
+    static uint16_t timecount =0;
+    static uint16_t weather_update_flag = 1;
+    int retry_count = 0;
+    esp_err_t err;
 
-    // GET Request
-    esp_http_client_set_method(client, HTTP_METHOD_GET);
-    esp_err_t err = esp_http_client_open(client, 0);
-    if (err != ESP_OK) {
-        ESP_LOGE(HTTP_TAG, "Failed to open HTTP connection: %s", esp_err_to_name(err));
-    } else {
-        content_length = esp_http_client_fetch_headers(client);
-        if (content_length < 0) {
-            ESP_LOGE(HTTP_TAG, "HTTP client fetch headers failed");
-        } else {
-            int data_read = esp_http_client_read_response(client, output_buffer, MAX_HTTP_OUTPUT_BUFFER);
-            if (data_read >= 0) {
-                ESP_LOGI(HTTP_TAG, "HTTP GET Status = %d, content_length = %d",
-                esp_http_client_get_status_code(client),
-                esp_http_client_get_content_length(client));
-                printf("data:%s", output_buffer);
-				parse_weather_data(output_buffer);
-            } else {
-                ESP_LOGE(HTTP_TAG, "Failed to read response");
+    while(1)
+    {
+        if(weather_update_flag == 1)
+        {
+            weather_update_flag = 0;
+            char output_buffer[MAX_HTTP_OUTPUT_BUFFER] = {0};   // Buffer to store response of http request
+            int content_length = 0;
+            static const char *URL = "http://"HOST"/v3/weather/daily.json?"	\
+                                    "key="UserKey"&location="Location		\
+                                    "&language="Language					\
+                                    "&unit=c&start="Strat"&days="Days;
+            esp_http_client_config_t config = {
+                .url = URL,
+            };
+            esp_http_client_handle_t client = esp_http_client_init(&config);
+
+            // GET Request
+            esp_http_client_set_method(client, HTTP_METHOD_GET);
+
+            //增加重试机制
+            while (retry_count < 3) {
+                err = esp_http_client_open(client, 0);
+                if (err == ESP_OK)
+                {
+                    break;  // 请求成功，跳出重试循环
+                }
+                else
+                {
+                    retry_count++;
+                    ESP_LOGE(HTTP_TAG, "Retrying... attempt %d", retry_count);
+                    vTaskDelay(1000 / portTICK_PERIOD_MS);  // 等待 1 秒后重试
+                }
             }
+
+            if (err != ESP_OK) {
+                ESP_LOGE(HTTP_TAG, "Failed to open HTTP connection: %s", esp_err_to_name(err));
+            } else {
+                content_length = esp_http_client_fetch_headers(client);
+                if (content_length < 0) {
+                    ESP_LOGE(HTTP_TAG, "HTTP client fetch headers failed");
+                } else {
+                    int data_read = esp_http_client_read_response(client, output_buffer, MAX_HTTP_OUTPUT_BUFFER);
+                    if (data_read >= 0) {
+                        ESP_LOGI(HTTP_TAG, "HTTP GET Status = %d, content_length = %d",
+                        esp_http_client_get_status_code(client),
+                        esp_http_client_get_content_length(client));
+                        printf("data:%s", output_buffer);
+                        parse_weather_data(output_buffer);
+                    } else {
+                        ESP_LOGE(HTTP_TAG, "Failed to read response");
+                    }
+                }
+            }
+            esp_http_client_close(client);
+            obtain_time();
         }
+        timecount++;
+        if(timecount >= WEATHER_UPDATE_TIME)
+        {
+            timecount = 0;
+            weather_update_flag = 1;
+        }
+        vTaskDelay(1000);       //1S
     }
-    esp_http_client_close(client);
 	vTaskDelete(NULL);
 }

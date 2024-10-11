@@ -1,18 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
-#include "freertos/event_groups.h"
-#include "esp_system.h"
-#include "nvs_flash.h"
-#include "esp_wifi.h"
-#include "esp_event.h"
-#include "esp_netif.h"
-#include "esp_smartconfig.h"
-#include "esp_log.h"
 #include "wifi_smartconfig.h"
-#include "weather.h"
+
 
 
 /* 定义事件 */
@@ -58,9 +45,8 @@ static void event_handler(void* arg, esp_event_base_t event_base,
         ESP_LOGI(TAG, "got ip:%s", esp_ip4addr_ntoa(&event->ip_info.ip, ip_str, sizeof(ip_str))); // 打印 IP 地址
         ESP_LOGI(TAG, "netmask:%s", esp_ip4addr_ntoa(&event->ip_info.netmask, netmask_str, sizeof(netmask_str))); // 打印子网掩码
         ESP_LOGI(TAG, "gateway:%s", esp_ip4addr_ntoa(&event->ip_info.gw, gateway_str, sizeof(gateway_str))); // 打印网关地址
+        xEventGroupSetBits(g_event_group, WIFI_CONNECT_BIT);
 
-        //start http  task
-		xTaskCreate(http_client_task, "http_client", 5120, NULL, 3, NULL);
     }
     else if (event_base == SC_EVENT && event_id == SC_EVENT_SCAN_DONE)
     {
@@ -183,4 +169,62 @@ void smartconfig_task(void *param)
     vTaskDelete(NULL);  // 删除当前任务
 }
 
+// 设置时区为中国标准时间
+void set_timezone()
+{
+    // 设置为北京时间，UTC+8
+    setenv("TZ", "CST-8", 1);
+    tzset();
+}
+
+// 时间同步通知回调
+void time_sync_notification_cb(struct timeval *tv)
+{
+    ESP_LOGI("NTP TIME", "Time has been synchronized");
+}
+
+// 初始化 SNTP
+void initialize_sntp(void)
+{
+    // 检查是否已经启动 SNTP，如果是，则先停止
+    if (sntp_enabled()) {
+        sntp_stop();  // 停止已经运行的 SNTP 客户端
+    }
+
+    sntp_setoperatingmode(SNTP_OPMODE_POLL);
+    sntp_setservername(0, "pool.ntp.org");  // 设置 NTP 服务器，可以换成其他服务器
+    sntp_init();
+    set_timezone();
+}
+
+// 获取并打印当前时间
+void obtain_time(void)
+{
+    time_t now;
+    struct tm timeinfo;
+    char strftime_buf[64];
+    uint8_t timeout_count =0;
+
+    initialize_sntp();
+    // 等待时间同步
+    while (sntp_get_sync_status() == SNTP_SYNC_STATUS_RESET) {
+        ESP_LOGI(TAG, "Waiting for system time to be set...");
+        vTaskDelay(2000 / portTICK_PERIOD_MS);
+        timeout_count++;
+        if(timeout_count >=10)
+        {
+            timeout_count=0;
+            return;
+        }
+
+    }
+
+    // 获取当前时间
+    time(&now);
+    localtime_r(&now, &timeinfo);
+
+    // 格式化并打印时间
+    strftime(strftime_buf, sizeof(strftime_buf), "%c", &timeinfo);
+    ESP_LOGI(TAG, "The current date/time is: %s", strftime_buf);
+}
 
