@@ -16,6 +16,14 @@
     "complex": "c",
     "gptim.h": "c",
     "iic.h": "c",
-    "simple_wifi_sta.h": "c"
+    "simple_wifi_sta.h": "c",
+    "esp_mac.h": "c",
+    "esp_wifi.h": "c",
+    "stdlib.h": "c",
+    "string.h": "c",
+    "random": "cpp",
+    "esp_netif.h": "c",
+    "esp_wpa2.h": "c",
+    "esp_event.h": "c"
 }
 }

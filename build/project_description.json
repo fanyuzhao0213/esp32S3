@@ -1,7 +1,7 @@
 {
     "version":            "1",
     "project_name":       "my_esp32_test",
-    "project_version":    "2ddaf24-dirty",
+    "project_version":    "b812e17-dirty",
     "project_path":       "G:/esp32S3/my_esp32_test",
     "idf_path":           "D:/espidf/v5.0.7/esp-idf",
     "build_dir":          "G:/esp32S3/my_esp32_test/build",
@@ -39,7 +39,7 @@
             "managed_reqs": [],
             "managed_priv_reqs": [],
             "file": "G:/esp32S3/my_esp32_test/build/esp-idf/BSP/libBSP.a",
-            "sources": [ "G:/esp32S3/my_esp32_test/components/BSP/LED/led.c", "G:/esp32S3/my_esp32_test/components/BSP/KEY/key.c", "G:/esp32S3/my_esp32_test/components/BSP/ESPTIM/esptim.c", "G:/esp32S3/my_esp32_test/components/BSP/GPTIM/gptim.c", "G:/esp32S3/my_esp32_test/components/BSP/WDT/wdt.c", "G:/esp32S3/my_esp32_test/components/BSP/PWM/pwm.c", "G:/esp32S3/my_esp32_test/components/BSP/IIC/iic.c", "G:/esp32S3/my_esp32_test/components/BSP/WIFI/simple_wifi_sta.c" ],
+            "sources": [ "G:/esp32S3/my_esp32_test/components/BSP/LED/led.c", "G:/esp32S3/my_esp32_test/components/BSP/KEY/key.c", "G:/esp32S3/my_esp32_test/components/BSP/ESPTIM/esptim.c", "G:/esp32S3/my_esp32_test/components/BSP/GPTIM/gptim.c", "G:/esp32S3/my_esp32_test/components/BSP/WDT/wdt.c", "G:/esp32S3/my_esp32_test/components/BSP/PWM/pwm.c", "G:/esp32S3/my_esp32_test/components/BSP/IIC/iic.c", "G:/esp32S3/my_esp32_test/components/BSP/WIFI/simple_wifi_sta.c", "G:/esp32S3/my_esp32_test/components/BSP/WIFI/wifi_ap.c", "G:/esp32S3/my_esp32_test/components/BSP/WIFI/wifi_smartconfig.c" ],
             "include_dirs": [ "LED", "KEY", "ESPTIM", "GPTIM", "WDT", "PWM", "IIC", "WIFI" ]
         },
         "app_trace": {

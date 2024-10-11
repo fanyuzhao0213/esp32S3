@@ -24,6 +24,17 @@
 #include "pwm.h"
 #include "iic.h"
 #include "simple_wifi_sta.h"
+#include "esp_wifi.h"
+#include "esp_event.h"
+#include "esp_mac.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "wifi_ap.h"
+#include "wifi_smartconfig.h"
+
+
+
 
 uint8_t dir = 1;
 uint16_t ledpwmval = 0;
@@ -79,6 +90,15 @@ void app_main(void)
     uint32_t flash_size;
     esp_chip_info_t chip_info;                                      /* 定义芯片信息结构体变量 */
 
+    //ESP_RST_WDT: 看门狗触发的重启
+    //ESP_RST_PANIC: 异常或崩溃导致的重启
+    //ESP_RST_SW: 软件触发的重启
+    //ESP_RST_DEEPSLEEP: 深度睡眠唤醒
+    //ESP_RST_POWERON: 正常上电重启
+    esp_reset_reason_t reason = esp_reset_reason();
+    printf("Reset reason: %d", reason);
+
+
     ret = nvs_flash_init();                                         /* 初始化NVS */
 
     if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND)
@@ -102,14 +122,16 @@ void app_main(void)
     esptim_int_init(500000);                                          /*  初始化高分辨率定时器，此处设置定时器周期为1秒，
                                                                         但该函数事宜微妙为单位进行计算，
                                                                         故而1秒钟换算为1000000微秒 */
-
     gptim_int_init(100, 1000000);                                   /* 初始化通用定时器 */
     // wdt_init(5000, 2000000);                                        /* 初始化看门狗相关的定时器 */
 
     pwm_init(10,1000);
 
 
-    wifi_sta_init();                        //wifi STA工作模式初始化
+    // wifi_sta_init();                         //wifi STA工作模式初始化
+    //wifi_init_softap();                       //wifi softAP工作模式初始化
+    // 启动任务来监控Wi-Fi连接和智能配网状态
+    wifi_smartconfig_sta();
     while (1)
     {
         // watch_dog_feed();
