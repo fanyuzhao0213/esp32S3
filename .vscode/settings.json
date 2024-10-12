@@ -34,6 +34,19 @@
     "bitset": "c",
     "chrono": "c",
     "algorithm": "c",
-    "time.h": "c"
+    "time.h": "c",
+    "mqtt.h": "c",
+    "esp_log.h": "c",
+    "mqtt_client.h": "c",
+    "task.h": "c",
+    "gpio.h": "c",
+    "usart.h": "c",
+    "array": "c",
+    "string": "c",
+    "string_view": "c",
+    "sstream": "c",
+    "regex": "c",
+    "initializer_list": "c",
+    "utility": "c"
 }
 }

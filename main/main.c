@@ -34,6 +34,8 @@
 #include "wifi_smartconfig.h"
 #include "freertos/event_groups.h"
 #include "weather.h"
+#include  "mqtt.h"
+#include "usart.h"
 
 EventGroupHandle_t g_event_group;        /* 定义事件组 */
 
@@ -119,18 +121,18 @@ void app_main(void)
     g_event_group = xEventGroupCreate();
 
     /*BSP相关初始化*/
+    uart_init();                                                    /* 初始化uart */
     // led1_init();                                                 /* 初始化LED */
     led2_init();                                                    /* 初始化LED */
     // i2c0_master = iic_init(I2C_NUM_0);                           /* 初始化IIC0 */
     // key_init();                                                  /* 初始化key */
-    esptim_int_init(500000);                                        /*  初始化高分辨率定时器，此处设置定时器周期为1秒，
+    esptim_int_init(1000000);                                       /*  初始化高分辨率定时器，此处设置定时器周期为1秒，
                                                                         但该函数事宜微妙为单位进行计算，
                                                                         故而1秒钟换算为1000000微秒 */
     gptim_int_init(100, 1000000);                                   /* 初始化通用定时器 */
-    // wdt_init(5000, 2000000);                                        /* 初始化看门狗相关的定时器 */
+    // wdt_init(5000, 2000000);                                     /* 初始化看门狗相关的定时器 */
 
     pwm_init(10,1000);
-
 
     // wifi_sta_init();                         //wifi STA工作模式初始化
     //wifi_init_softap();                       //wifi softAP工作模式初始化
@@ -148,7 +150,22 @@ void app_main(void)
         //获取weather 任务启动
         //start http  task
 		xTaskCreate(http_client_task, "http_client", 5120, NULL, 3, NULL);
+        mqtt_start();                       //wifi连接启动mqtt服务器
     }
+    // 等待 MQTT_CONNECT_BIT 都被设置
+    bits = xEventGroupWaitBits( g_event_group, MQTT_CONNECT_BIT, // 等待的标志
+                                            pdTRUE,        // 等待之后自动清除标志
+                                            pdTRUE,        // 等待所有标志
+                                            portMAX_DELAY  // 永久等待
+                                            );
+    if(bits & MQTT_CONNECT_BIT)
+    {
+        //获取weather 任务启动
+        //start http  task
+		xTaskCreate(mqtt_pub_task, "mqtt_pub_task", 5120, NULL, 4, NULL);
+    }
+
+
     while (1)
     {
         // watch_dog_feed();

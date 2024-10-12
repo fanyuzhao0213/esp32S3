@@ -22,6 +22,8 @@
 
 #define WIFI_CONNECT_BIT            BIT0
 #define Timeout_GetWeather_BIT      BIT1
+#define MQTT_CONNECT_BIT            BIT2
+
 
 extern EventGroupHandle_t g_event_group;        /* 定义事件组 */
 

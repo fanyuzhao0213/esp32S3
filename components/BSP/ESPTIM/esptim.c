@@ -20,6 +20,7 @@
 
 #include "esptim.h"
 #include "pwm.h"
+#include "usart.h"
 
 /**
  * @brief       初始化高精度定时器（ESP_TIMER）
@@ -49,6 +50,8 @@ void esptim_int_init(uint64_t tps)
  */
 void esptim_callback(void *arg)
 {
-    // printf("esptim_callback,ledpwmval:%d\r\n",ledpwmval);
+    // uint8_t testbuf[10] = {0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09,0x0A};
+    // // printf("esptim_callback,ledpwmval:%d\r\n",ledpwmval);
+    // uart_write_bytes(UART_NUM, testbuf, sizeof(testbuf));   /* 写数据 */
     LED2_TOGGLE();
 }
